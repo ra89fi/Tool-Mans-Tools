@@ -1,4 +1,8 @@
 import React from 'react';
+import Footer from '../shared/Footer';
+import Reviews from '../shared/Reviews';
+import Summary from '../shared/Summary';
+import Tools from '../shared/Tools';
 
 const Home = () => {
     return (
@@ -12,6 +16,11 @@ const Home = () => {
                     alt=""
                 />
             </div>
+            <h3 style={{ textAlign: 'center' }}>Our Reknowned Tools</h3>
+            <Tools />
+            <Summary />
+            <Reviews />
+            <Footer />
         </div>
     );
 };
