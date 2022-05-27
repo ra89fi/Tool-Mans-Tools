@@ -5,26 +5,26 @@ const Summary = () => {
         <div className="summary">
             <div className="card">
                 <div className="card-body">
-                    <img src="/images/tools/Tool1.jpg" alt="" />
-                    <h5 className="card-title">Served 100+ Customers</h5>
+                    <h5 className="card-title">100+</h5>
+                    <p>Customers Served</p>
                 </div>
             </div>
             <div className="card">
                 <div className="card-body">
-                    <img src="/images/tools/Tool1.jpg" alt="" />
-                    <h5 className="card-title">120M+ Annual Revenue</h5>
+                    <h5 className="card-title">120M+</h5>
+                    <p>Annual Revenue</p>
                 </div>
             </div>
             <div className="card">
                 <div className="card-body">
-                    <img src="/images/tools/Tool1.jpg" alt="" />
-                    <h5 className="card-title">33K+ Reviews</h5>
+                    <h5 className="card-title">33K+</h5>
+                    <p>Reviews</p>
                 </div>
             </div>
             <div className="card">
                 <div className="card-body">
-                    <img src="/images/tools/Tool1.jpg" alt="" />
-                    <h5 className="card-title">50+ Tools</h5>
+                    <h5 className="card-title">50+</h5>
+                    <p>Tools</p>
                 </div>
             </div>
         </div>
