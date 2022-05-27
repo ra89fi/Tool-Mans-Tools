@@ -5,7 +5,7 @@ const Tools = () => {
     return (
         <div className="tools">
             {'abcdef'.split('').map((el) => (
-                <div className="tool">
+                <div className="tool" key={el}>
                     <img src="/images/tools/Tool1.jpg" alt="" />
                     <div>
                         <h5>Name Tool1</h5>

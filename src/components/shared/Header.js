@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import app from '../../firebase.init';
+import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+const auth = getAuth(app);
 
 const Header = () => {
+    const [user] = useAuthState(auth);
+    const logOut = () => signOut(auth);
     return (
         <header>
             <div>
@@ -14,14 +21,26 @@ const Header = () => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-                <li>
-                    <Link to="/admin">Admin</Link>
-                </li>
+                {user && (
+                    <li>
+                        <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                )}
                 <li>
                     <Link to="/contact">Contact</Link>
                 </li>
+                {!user && (
+                    <li>
+                        <Link to="/register">Register</Link>
+                    </li>
+                )}
                 <li>
-                    <Link to="/login">Login</Link>
+                    {!user && <Link to="/login">Login</Link>}
+                    {user && (
+                        <button className="btn btn-secondary" onClick={logOut}>
+                            Log Out
+                        </button>
+                    )}
                 </li>
             </ul>
         </header>
