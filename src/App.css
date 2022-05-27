@@ -38,3 +38,9 @@ header ul li {
 .summary .card-body {
     text-align: center;
 }
+.reviews {
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
