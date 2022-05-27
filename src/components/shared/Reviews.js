@@ -5,6 +5,7 @@ const reviews = [
         _id: 1,
         name: 'Mary Jane',
         review: 'Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum repellendus!',
+        rating: 4,
         image: '/images/user.jpg',
     },
 ];
@@ -20,7 +21,9 @@ const Reviews = () => {
                         style={{ float: 'left', marginRight: '20px' }}
                     />
                     <p>{el.review}</p>
-                    <p style={{ textAlign: 'right' }}>- {el.name}</p>
+                    <p style={{ textAlign: 'right' }}>
+                        {el.rating} - {el.name}
+                    </p>
                 </div>
             ))}
         </div>
