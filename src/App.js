@@ -8,6 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from './components/pages/Login';
 import Purchase from './components/pages/Purchase';
 import Register from './components/pages/Register';
+import Dashboard from './components/pages/Dashboard';
 const auth = getAuth(app);
 
 const RequireAuth = ({ children }) => {
@@ -20,9 +21,10 @@ const RequireAuth = ({ children }) => {
 };
 
 function App() {
+    const [user] = useAuthState(auth);
     return (
         <div className="App">
-            <Header />
+            <Header user={user} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -31,7 +33,15 @@ function App() {
                     path="/purchase/:id"
                     element={
                         <RequireAuth>
-                            <Purchase />
+                            <Purchase user={user} />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <RequireAuth>
+                            <Dashboard user={user} />
                         </RequireAuth>
                     }
                 />

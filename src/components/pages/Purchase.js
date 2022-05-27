@@ -1,10 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-
-import app from '../../firebase.init';
-import { getAuth } from 'firebase/auth';
-
-const auth = getAuth(app);
+import React, { useRef, useState } from 'react';
 
 const tools = [
     {
@@ -17,7 +11,7 @@ const tools = [
         price: 13.99,
     },
 ];
-const Purchase = () => {
+const Purchase = ({ user }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -37,7 +31,6 @@ const Purchase = () => {
         setQuantity(qv);
     };
     const formRef = useRef();
-    const [user] = useAuthState(auth);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
     const [quantity, setQuantity] = useState(tools[0].minOrder);
