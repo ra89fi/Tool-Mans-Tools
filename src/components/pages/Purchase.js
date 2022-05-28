@@ -34,7 +34,7 @@ const Purchase = ({ user }) => {
             unitPrice: tool.price,
             quantity: quantity,
             totalPrice: totalPrice,
-            status: 'Pending',
+            status: 'Unpaid',
         };
         fetch(`${process.env.REACT_APP_BACK_URL}/orders`, {
             method: 'POST',

@@ -50,7 +50,7 @@ const Orders = ({ user }) => {
                             <td>{el.totalPrice}</td>
                             <td>{el.status}</td>
                             <td>
-                                {!el.status || el.status === 'Pending' ? (
+                                {!el.status || el.status === 'Unpaid' ? (
                                     <span>
                                         <Link
                                             className="btn btn-secondary btn-sm"

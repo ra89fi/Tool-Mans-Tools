@@ -63,6 +63,7 @@ function App() {
                         </RequireAuth>
                     }
                 />
+                <Route path="*" element={<p>Not Found!</p>} />
             </Routes>
             <Footer />
         </div>
