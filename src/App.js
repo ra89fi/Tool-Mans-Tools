@@ -9,6 +9,8 @@ import Login from './components/pages/Login';
 import Purchase from './components/pages/Purchase';
 import Register from './components/pages/Register';
 import Dashboard from './components/pages/Dashboard';
+import About from './components/pages/About';
+import Contact from './components/pages/Contact';
 const auth = getAuth(app);
 
 const RequireAuth = ({ children }) => {
@@ -29,6 +31,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route
                     path="/purchase/:id"
                     element={

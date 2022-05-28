@@ -9,6 +9,7 @@ const Header = ({ user }) => {
     const logOut = () => signOut(auth);
     return (
         <header>
+            <h1>Tool Man's Tools</h1>
             <span>{user?.displayName ? `Hi, ${user.displayName}` : ''}</span>
             <ul>
                 <li>

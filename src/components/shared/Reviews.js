@@ -13,7 +13,7 @@ const Reviews = () => {
             {reviews.map((el) => (
                 <div className="review" key={el._id}>
                     <img
-                        src={el.image}
+                        src={el.image.length || '/images/user.jpg'}
                         alt=""
                         style={{ float: 'left', marginRight: '20px' }}
                     />

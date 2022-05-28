@@ -12,7 +12,7 @@ const Orders = ({ user }) => {
     return (
         <div className="orders">
             {error && <p className="text-danger errTxt">{error.message}</p>}
-            <table class="table table-striped table-hover">
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>

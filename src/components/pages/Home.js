@@ -7,18 +7,19 @@ import Tools from '../shared/Tools';
 const Home = () => {
     return (
         <div className="homepage">
-            <div className="banner">
-                <div>
-                    <h1>Tool Man's Tools</h1>
-                </div>
-                <img
-                    src="https://engineersbible.b-cdn.net/wp-content/uploads/elementor/thumbs/physical-engineer-tools-owd7dyisu89h7n11x0cx8prytt0kkmpqn1c0nuuiby.png"
-                    alt=""
-                />
-            </div>
+            <div
+                className="banner"
+                style={{
+                    backgroundImage: `url('/images/banner.jpg')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                }}
+            ></div>
             <h3 style={{ textAlign: 'center' }}>Our Reknowned Tools</h3>
             <Tools />
+            <h3 style={{ textAlign: 'center' }}>Our Progress</h3>
             <Summary />
+            <h3 style={{ textAlign: 'center' }}>Testimonials</h3>
             <Reviews />
             <Footer />
         </div>
