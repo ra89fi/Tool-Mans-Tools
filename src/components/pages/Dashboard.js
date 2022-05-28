@@ -1,6 +1,7 @@
 import React from 'react';
 import Orders from '../shared/Orders';
 import ReviewForm from '../shared/ReviewForm';
+import ProductForm from '../shared/ProductForm';
 
 const Dashboard = ({ user }) => {
     return (
@@ -48,6 +49,54 @@ const Dashboard = ({ user }) => {
                     >
                         My Profile
                     </button>
+                    <button
+                        className="nav-link"
+                        id="v-pills-allOrders-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-allOrders"
+                        type="button"
+                        role="tab"
+                        aria-controls="v-pills-allOrders"
+                        aria-selected="false"
+                    >
+                        Manage All Orders
+                    </button>
+                    <button
+                        className="nav-link"
+                        id="v-pills-addProduct-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-addProduct"
+                        type="button"
+                        role="tab"
+                        aria-controls="v-pills-addProduct"
+                        aria-selected="false"
+                    >
+                        Add Product
+                    </button>
+                    <button
+                        className="nav-link"
+                        id="v-pills-admin-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-admin"
+                        type="button"
+                        role="tab"
+                        aria-controls="v-pills-admin"
+                        aria-selected="false"
+                    >
+                        Make Admin
+                    </button>
+                    <button
+                        className="nav-link"
+                        id="v-pills-products-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-products"
+                        type="button"
+                        role="tab"
+                        aria-controls="v-pills-products"
+                        aria-selected="false"
+                    >
+                        Manage Products
+                    </button>
                 </div>
                 <div className="tab-content" id="v-pills-tabContent">
                     <div
@@ -79,6 +128,46 @@ const Dashboard = ({ user }) => {
                     >
                         <h4>My Profile</h4>
                         <p>This is my profile</p>
+                    </div>
+                    <div
+                        className="tab-pane fade"
+                        id="v-pills-allOrders"
+                        role="tabpanel"
+                        aria-labelledby="v-pills-allOrders-tab"
+                        tabIndex="0"
+                    >
+                        <h4>All Orders</h4>
+                        <p>This is all orders</p>
+                    </div>
+                    <div
+                        className="tab-pane fade"
+                        id="v-pills-addProduct"
+                        role="tabpanel"
+                        aria-labelledby="v-pills-addProduct-tab"
+                        tabIndex="0"
+                    >
+                        <h4>Add Product</h4>
+                        <ProductForm user={user} />
+                    </div>
+                    <div
+                        className="tab-pane fade"
+                        id="v-pills-admin"
+                        role="tabpanel"
+                        aria-labelledby="v-pills-admin-tab"
+                        tabIndex="0"
+                    >
+                        <h4>Make Admin</h4>
+                        <p>This is make admin</p>
+                    </div>
+                    <div
+                        className="tab-pane fade"
+                        id="v-pills-products"
+                        role="tabpanel"
+                        aria-labelledby="v-pills-products-tab"
+                        tabIndex="0"
+                    >
+                        <h4>Manage Products</h4>
+                        <p>This is manage products</p>
                     </div>
                 </div>
             </div>

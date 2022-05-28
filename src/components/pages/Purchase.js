@@ -1,25 +1,64 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-const tools = [
-    {
-        _id: 1,
-        name: 'Axe',
-        image: '/images/tools/Axe.jpg',
-        description: '',
-        minOrder: 2,
-        available: 24,
-        price: 13.99,
-    },
-];
 const Purchase = ({ user }) => {
+    const params = useParams();
+    const [tool, setTool] = useState({});
+    const formRef = useRef();
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [quantity, setQuantity] = useState(tool?.minOrder || 0);
+    const [totalPrice, setTotalPrice] = useState(0);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACK_URL}/tools/${params.id}`)
+            .then((data) => data.json())
+            .then((tool) => {
+                setTool(tool);
+                setQuantity(tool.minOrder);
+            })
+            .catch((err) => setError(err.message));
+    }, [params]);
+    useEffect(() => {
+        setTotalPrice(tool.price * quantity);
+    }, [tool, quantity]);
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log('purchase from submitted');
+        formRef.current.submit.disabled = true;
+        setLoading(true);
+        const data = {
+            email: user.email,
+            address: formRef.current.address.value,
+            phone: formRef.current.phone.value,
+            productName: tool.name,
+            unitPrice: tool.price,
+            quantity: quantity,
+            totalPrice: totalPrice,
+        };
+        fetch(`${process.env.REACT_APP_BACK_URL}/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((data) => data.json())
+            .then((result) => {
+                console.log(result);
+                if (result.message === 'ok') {
+                    e.target.reset();
+                    setQuantity(0);
+                }
+            })
+            .catch((err) => setError(err.message))
+            .finally(() => {
+                formRef.current.submit.disabled = false;
+                setLoading(false);
+            });
     };
     const onQuantityChange = (e) => {
         let qv = parseInt(e.target.value);
-        if (qv < tools[0].minOrder || qv > tools[0].available) {
+        if (qv < tool.minOrder || qv > tool.available) {
             formRef.current.submit.disabled = true;
             setError(
                 'Quantity must be equal to or greater than minimum order quantity and less than or equal to available quantity.'
@@ -29,11 +68,8 @@ const Purchase = ({ user }) => {
             setError(null);
         }
         setQuantity(qv);
+        setTotalPrice(qv * tool?.price || 0);
     };
-    const formRef = useRef();
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(null);
-    const [quantity, setQuantity] = useState(tools[0].minOrder);
     return (
         <div className="purchasepage">
             <div style={{ width: '35%' }}>
@@ -47,7 +83,7 @@ const Purchase = ({ user }) => {
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        minHeight: '300px',
+                        minHeight: '400px',
                         justifyContent: 'space-evenly',
                     }}
                 >
@@ -74,6 +110,7 @@ const Purchase = ({ user }) => {
                         required
                         onChange={onQuantityChange}
                     />
+                    <h4>Total Price : ${totalPrice}</h4>
                     <button
                         type="submit"
                         className="btn btn-secondary"
@@ -83,19 +120,17 @@ const Purchase = ({ user }) => {
                     </button>
                 </form>
                 {error && <p className="text-danger errTxt">{error}</p>}
-                {loading && <p>loading...</p>}
+                {loading && <p>Loading...</p>}
             </div>
-            {tools.map((el) => (
-                <div className="tool" key={el._id}>
-                    <img src={el.image} alt={el.name} />
-                    <div>
-                        <h5>{el.name}</h5>
-                        <p>Price: ${el.price}</p>
-                        <p>Minimum Order: {el.minOrder}</p>
-                        <p>Available: {el.available}</p>
-                    </div>
+            <div className="tool" key={tool._id}>
+                <img src={tool.image} alt={tool.name} />
+                <div>
+                    <h5>{tool.name}</h5>
+                    <p>Price: ${tool.price}</p>
+                    <p>Minimum Order: {tool.minOrder}</p>
+                    <p>Available: {tool.available}</p>
                 </div>
-            ))}
+            </div>
         </div>
     );
 };
