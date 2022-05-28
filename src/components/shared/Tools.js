@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const tools = [
-    {
-        _id: 1,
-        name: 'Axe',
-        image: '/images/tools/Axe.jpg',
-        description: '',
-        minOrder: 2,
-        available: 24,
-        price: 13.99,
-    },
-];
+
 const Tools = () => {
+    const [tools, setTools] = useState([]);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACK_URL}/tools`)
+            .then((data) => data.json())
+            .then((tools) => setTools(tools))
+            .catch((err) => console.log(err.message));
+    }, []);
     return (
         <div className="tools">
             {tools.map((el) => (
