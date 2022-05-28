@@ -99,7 +99,7 @@ const Dashboard = ({ user }) => {
                     </button>}
                 </div>
                 <div className="tab-content" id="v-pills-tabContent">
-                    <div
+                    {!user.admin && <div
                         className="tab-pane fade show active"
                         id="v-pills-orders"
                         role="tabpanel"
@@ -108,8 +108,8 @@ const Dashboard = ({ user }) => {
                     >
                         <h4>My Orders</h4>
                         <Orders user={user} />
-                    </div>
-                    <div
+                    </div>}
+                    {!user.admin && <div
                         className="tab-pane fade"
                         id="v-pills-review"
                         role="tabpanel"
@@ -118,7 +118,7 @@ const Dashboard = ({ user }) => {
                     >
                         <h4>Add a Review</h4>
                         <ReviewForm user={user} />
-                    </div>
+                    </div>}
                     <div
                         className="tab-pane fade"
                         id="v-pills-profile"
