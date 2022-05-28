@@ -21,7 +21,6 @@ const Home = () => {
             <Summary />
             <h3 style={{ textAlign: 'center' }}>Testimonials</h3>
             <Reviews />
-            <Footer />
         </div>
     );
 };

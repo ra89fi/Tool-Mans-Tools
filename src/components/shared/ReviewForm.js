@@ -23,7 +23,6 @@ const ReviewForm = ({ user }) => {
         })
             .then((data) => data.json())
             .then((result) => {
-                console.log(result);
                 if (result.message === 'ok') {
                     e.target.reset();
                 }

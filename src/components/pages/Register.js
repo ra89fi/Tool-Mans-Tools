@@ -31,6 +31,23 @@ const Register = () => {
         if (user) {
             formRef.current.reset();
             navigate('/');
+            const data = {
+                email: user.email,
+                admin: false,
+            };
+            fetch(`${process.env.REACT_APP_BACK_URL}/users`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((data) => data.json())
+                .then((result) => {
+                    localStorage.setItem('token', result.token);
+                    user.admin = result.admin;
+                })
+                .catch((err) => console.log(err));
         }
     }, [user]);
     return (

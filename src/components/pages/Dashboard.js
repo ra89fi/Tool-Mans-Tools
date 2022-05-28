@@ -13,7 +13,7 @@ const Dashboard = ({ user }) => {
                     role="tablist"
                     aria-orientation="vertical"
                 >
-                    <button
+                    {!user.admin && <button
                         className="nav-link active"
                         id="v-pills-orders-tab"
                         data-bs-toggle="pill"
@@ -24,8 +24,8 @@ const Dashboard = ({ user }) => {
                         aria-selected="true"
                     >
                         My Orders
-                    </button>
-                    <button
+                    </button>}
+                    {!user.admin && <button
                         className="nav-link"
                         id="v-pills-review-tab"
                         data-bs-toggle="pill"
@@ -36,7 +36,7 @@ const Dashboard = ({ user }) => {
                         aria-selected="false"
                     >
                         Add a Review
-                    </button>
+                    </button>}
                     <button
                         className="nav-link"
                         id="v-pills-profile-tab"
@@ -49,7 +49,7 @@ const Dashboard = ({ user }) => {
                     >
                         My Profile
                     </button>
-                    <button
+                    {user.admin && <button
                         className="nav-link"
                         id="v-pills-allOrders-tab"
                         data-bs-toggle="pill"
@@ -60,8 +60,8 @@ const Dashboard = ({ user }) => {
                         aria-selected="false"
                     >
                         Manage All Orders
-                    </button>
-                    <button
+                    </button>}
+                    {user.admin && <button
                         className="nav-link"
                         id="v-pills-addProduct-tab"
                         data-bs-toggle="pill"
@@ -72,8 +72,8 @@ const Dashboard = ({ user }) => {
                         aria-selected="false"
                     >
                         Add Product
-                    </button>
-                    <button
+                    </button>}
+                    {user.admin && <button
                         className="nav-link"
                         id="v-pills-admin-tab"
                         data-bs-toggle="pill"
@@ -84,8 +84,8 @@ const Dashboard = ({ user }) => {
                         aria-selected="false"
                     >
                         Make Admin
-                    </button>
-                    <button
+                    </button>}
+                    {user.admin && <button
                         className="nav-link"
                         id="v-pills-products-tab"
                         data-bs-toggle="pill"
@@ -96,7 +96,7 @@ const Dashboard = ({ user }) => {
                         aria-selected="false"
                     >
                         Manage Products
-                    </button>
+                    </button>}
                 </div>
                 <div className="tab-content" id="v-pills-tabContent">
                     <div

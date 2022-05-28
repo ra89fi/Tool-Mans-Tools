@@ -32,6 +32,13 @@ const Login = () => {
         if (user) {
             formRef?.current.reset();
             navigate(from, { replace: true });
+            fetch(`${process.env.REACT_APP_BACK_URL}/users?${user.email}`)
+                .then((data) => data.json())
+                .then((result) => {
+                    localStorage.setItem('token', result.token);
+                    user.admin = result.admin;
+                })
+                .catch((err) => console.log(err));
         }
     }, [user]);
     return (

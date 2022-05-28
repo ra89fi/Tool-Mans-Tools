@@ -34,6 +34,7 @@ const Purchase = ({ user }) => {
             unitPrice: tool.price,
             quantity: quantity,
             totalPrice: totalPrice,
+            status: 'Pending',
         };
         fetch(`${process.env.REACT_APP_BACK_URL}/orders`, {
             method: 'POST',
@@ -44,7 +45,6 @@ const Purchase = ({ user }) => {
         })
             .then((data) => data.json())
             .then((result) => {
-                console.log(result);
                 if (result.message === 'ok') {
                     e.target.reset();
                     setQuantity(0);

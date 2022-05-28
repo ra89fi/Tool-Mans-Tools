@@ -11,6 +11,10 @@ import Register from './components/pages/Register';
 import Dashboard from './components/pages/Dashboard';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
+import Payment from './components/pages/Payment';
+import Blogs from './components/pages/Blogs';
+import Portfolio from './components/pages/Portfolio';
+import Footer from './components/shared/Footer';
 const auth = getAuth(app);
 
 const RequireAuth = ({ children }) => {
@@ -33,6 +37,8 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/blogs" element={<Blogs />} />
+                <Route path="/portfolio" element={<Portfolio />} />
                 <Route
                     path="/purchase/:id"
                     element={
@@ -49,7 +55,16 @@ function App() {
                         </RequireAuth>
                     }
                 />
+                <Route
+                    path="/payment/:id"
+                    element={
+                        <RequireAuth>
+                            <Payment user={user} />
+                        </RequireAuth>
+                    }
+                />
             </Routes>
+            <Footer />
         </div>
     );
 }
