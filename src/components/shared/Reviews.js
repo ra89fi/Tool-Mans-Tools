@@ -1,16 +1,13 @@
-import React from 'react';
-
-const reviews = [
-    {
-        _id: 1,
-        name: 'Mary Jane',
-        review: 'Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum repellendus!',
-        rating: 4,
-        image: '/images/user.jpg',
-    },
-];
+import React, { useState, useEffect } from 'react';
 
 const Reviews = () => {
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACK_URL}/reviews`)
+            .then((data) => data.json())
+            .then((reviews) => setReviews(reviews))
+            .catch((err) => console.log(err.message));
+    }, []);
     return (
         <div className="reviews">
             {reviews.map((el) => (
@@ -22,7 +19,7 @@ const Reviews = () => {
                     />
                     <p>{el.review}</p>
                     <p style={{ textAlign: 'right' }}>
-                        {el.rating} - {el.name}
+                        {el.rating} <em>by</em> {el.name}
                     </p>
                 </div>
             ))}
